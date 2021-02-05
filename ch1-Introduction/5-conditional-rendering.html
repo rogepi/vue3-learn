@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="rogepi">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../vue.global.js"></script>
+  <title>5-conditional-rendering</title>
+</head>
+
+<body>
+  <!-- 控制切换一个元素是否显示也相当简单： -->
+  <div id="conditional-rendering">
+    <span v-if="seen">现在你看到了我</span>
+  </div>
+  <script>
+    const ConditionalRendering = {
+      data() {
+        return {
+          seen: true
+        }
+      }
+    }
+    Vue.createApp(ConditionalRendering).mount('#conditional-rendering')
+  </script>
+</body>
