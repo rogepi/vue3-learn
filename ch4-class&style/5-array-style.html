@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>5-array-style</title>
+  </head>
+
+  <body>
+    <div id="array-style">
+      <!-- :style 的数组语法可以将多个样式对象应用到同一个元素上： -->
+      <div :style="[baseStyles, overridingStyles]"></div>
+      <!-- 可以为 style 绑定中的 property 提供一个包含多个值的数组，
+        常用于提供多个带前缀的值，例如： -->
+      <div :style="{ display: ['-webkit-box', '-ms-flexbox', 'flex'] }"></div>
+    </div>
+  </body>
+</html>

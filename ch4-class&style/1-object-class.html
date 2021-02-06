@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>1-object-class</title>
+  </head>
+
+  <body>
+    <div id="object-class">
+      <!-- 可以传给 :class (v-bind:class 的简写) 一个对象，以动态地切换 class： -->
+      <div
+        class="static"
+        :class="{active: isActive,'text-danger':hasError}"
+      ></div>
+      <!-- 绑定的数据对象不必内联定义在模板里： -->
+      <div :class="classObject"></div>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            isActive: true,
+            hasError: false,
+            error: null,
+          };
+        },
+        computed: {
+          classObject() {
+            return {
+              active: this.isActive && !this.error,
+              "text-danger": this.error && this.error.type === "fatal",
+            };
+          },
+        },
+      }).mount("#object-class");
+    </script>
+  </body>
+</html>
