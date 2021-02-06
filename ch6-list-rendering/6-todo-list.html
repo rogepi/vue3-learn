@@ -33,19 +33,19 @@
       const app = Vue.createApp({
         data() {
           return {
-            newTodoText: "",
+            newTodoText: '',
             todos: [
               {
                 id: 1,
-                title: "Do the dishes",
+                title: 'Do the dishes',
               },
               {
                 id: 2,
-                title: "Take out the trash",
+                title: 'Take out the trash',
               },
               {
                 id: 3,
-                title: "Mow the lawn",
+                title: 'Mow the lawn',
               },
             ],
             nextTodoId: 4,
@@ -57,23 +57,23 @@
               id: this.nextTodoId++,
               title: this.newTodoText,
             });
-            this.newTodoText = "";
+            this.newTodoText = '';
           },
         },
       });
 
-      app.component("todo-item", {
+      app.component('todo-item', {
         template: `
                     <li>
                       {{ title }}
                       <button @click="$emit('remove')">Remove</button>
                     </li>
                   `,
-        props: ["title"],
-        emits: ["remove"],
+        props: ['title'],
+        emits: ['remove'],
       });
 
-      app.mount("#todo-list-example");
+      app.mount('#todo-list-example');
     </script>
   </body>
 </html>

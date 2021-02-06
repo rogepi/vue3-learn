@@ -30,9 +30,9 @@
         data() {
           return {
             groceryList: [
-              { id: 0, text: "Vegetables" },
-              { id: 1, text: "Cheese" },
-              { id: 2, text: "Whatever else humans are supposed to eat" },
+              { id: 0, text: 'Vegetables' },
+              { id: 1, text: 'Cheese' },
+              { id: 2, text: 'Whatever else humans are supposed to eat' },
             ],
           };
         },
@@ -41,13 +41,13 @@
       const app = Vue.createApp(TodoList);
 
       // 定义名为 todo-item 的新组件
-      app.component("todo-item", {
-        props: ["todo"],
+      app.component('todo-item', {
+        props: ['todo'],
         template: `<li>{{todo.text}}</li>`,
       });
 
       // 挂载 Vue 应用
-      app.mount("#todo-list-app");
+      app.mount('#todo-list-app');
     </script>
   </body>
 </html>

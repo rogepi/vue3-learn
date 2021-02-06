@@ -18,20 +18,20 @@
       Vue.createApp({
         data() {
           return {
-            name: "Vue.js",
+            name: 'Vue.js',
           };
         },
         methods: {
           greet(event) {
             // `methods` 内部的 `this` 指向当前活动实例
-            alert("Hello " + this.name + "!");
+            alert('Hello ' + this.name + '!');
             // `event` 是原生 DOM event
             if (event) {
               alert(event.target.tagName);
             }
           },
         },
-      }).mount("#event-with-method");
+      }).mount('#event-with-method');
     </script>
   </body>
 </html>
