@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>6-key-modifier</title>
+  </head>
+
+  <body>
+    <div id="key-modifier">
+      <!-- Vue 允许为 v-on 或者 @ 在监听键盘事件时添加按键修饰符： -->
+
+      <!-- 只有在 `key` 是 `Enter` 时调用 `vm.submit()` -->
+      <input @keyup.enter="submit" />
+
+      <!-- 你可以直接将 KeyboardEvent.key 暴露的任意有效按键名转换为 kebab-case 来作为修饰符。 -->
+      <input @keyup.page-down="onPageDown" />
+
+      <!-- Alt + Enter -->
+      <input @keyup.alt.enter="clear" />
+
+      <!-- Ctrl + Click -->
+      <div @click.ctrl="doSomething">Do something</div>
+
+      <!-- 系统修饰键
+            .ctrl
+            .alt
+            .shift
+            .meta -->
+      <!-- .exact 修饰符允许你控制由精确的系统修饰符组合触发的事件。 -->
+
+      <!-- 即使 Alt 或 Shift 被一同按下时也会触发 -->
+      <button @click.ctrl="onClick">A</button>
+
+      <!-- 有且只有 Ctrl 被按下的时候才触发 -->
+      <button @click.ctrl.exact="onCtrlClick">A</button>
+
+      <!-- 没有任何系统修饰符被按下的时候才触发 -->
+      <button @click.exact="onClick">A</button>
+
+      <!-- 鼠标按钮修饰符
+            .left
+            .right
+            .middle -->
+    </div>
+    <script>
+      Vue.createApp({}).mount("#key-modifier");
+    </script>
+  </body>
+</html>

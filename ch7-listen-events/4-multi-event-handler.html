@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>4-multi-event-handler</title>
+  </head>
+
+  <body>
+    <div id="multi-event-handler">
+      <!-- 事件处理程序中可以有多个方法，这些方法由逗号运算符分隔： -->
+      <button @click="one($event), two($event)"></button>
+    </div>
+    <script>
+      Vue.createApp({
+        methods: {
+          one(event) {
+            // 第一个事件处理器逻辑...
+          },
+          two(event) {
+            // 第二个事件处理器逻辑...
+          },
+        },
+      }).mount("#multi-event-handler");
+    </script>
+  </body>
+</html>

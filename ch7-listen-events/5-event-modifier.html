@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>5-event-modifier</title>
+  </head>
+
+  <body>
+    <div id="event-modifier">
+      <!-- Vue.js 为 v-on 提供了事件修饰符。 -->
+      
+      <!-- 阻止单击事件继续传播 -->
+      <a @click.stop="doThis"></a>
+
+      <!-- 提交事件不再重载页面 -->
+      <form @submit.prevent="onSubmit"></form>
+
+      <!-- 修饰符可以串联 -->
+      <a @click.stop.prevent="doThat"></a>
+
+      <!-- 只有修饰符 -->
+      <form @submit.prevent></form>
+
+      <!-- 添加事件监听器时使用事件捕获模式 -->
+      <!-- 即内部元素触发的事件先在此处理，然后才交由内部元素进行处理 -->
+      <div @click.capture="doThis">...</div>
+
+      <!-- 只当在 event.target 是当前元素自身时触发处理函数 -->
+      <!-- 即事件不是从内部元素触发的 -->
+      <div @click.self="doThat">...</div>
+
+      <!-- 点击事件将只会触发一次 -->
+      <a @click.once="doThis"></a>
+
+      <!-- 滚动事件的默认行为 (即滚动行为) 将会立即触发   -->
+      <!-- 而不会等待 `onScroll` 完成                   -->
+      <!-- 这其中包含 `event.preventDefault()` 的情况   -->
+      <div @scroll.passive="onScroll">...</div>
+      <!-- 这个 .passive 修饰符尤其能够提升移动端的性能。 -->
+    </div>
+    <script>
+      Vue.createApp({}).mount("#event-modifier");
+    </script>
+  </body>
+</html>
