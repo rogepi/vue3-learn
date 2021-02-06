@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>2-v-show</title>
+  </head>
+
+  <body>
+    <div id="vshow-app">
+      <!-- 另一个用于条件性展示元素的选项是 v-show 指令。用法大致一样： -->
+      <!-- 不同的是带有 v-show 的元素始终会被渲染并保留在 DOM 中。
+        v-show 只是简单地切换元素的 CSS property display。 -->
+      <h1 v-show="ok">Hello!</h1>
+    </div>
+    <script>
+      Vue.createApp({
+        data() {
+          return {
+            ok: true,
+          };
+        },
+      }).mount("#vshow-app");
+    </script>
+  </body>
+</html>
