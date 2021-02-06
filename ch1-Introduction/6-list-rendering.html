@@ -1,37 +1,35 @@
 <!DOCTYPE html>
 
 <html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="../vue.global.js"></script>
+    <title>6-list-rendering</title>
+  </head>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="author" content="rogepi">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../vue.global.js"></script>
-  <title>6-list-rendering</title>
-</head>
+  <body>
+    <!-- v-for 指令可以绑定数组的数据来渲染一个项目列表： -->
+    <div id="list-rendering">
+      <ol>
+        <li v-for="todo in todos">{{todo.text}}</li>
+      </ol>
+    </div>
 
-<body>
-  <!-- v-for 指令可以绑定数组的数据来渲染一个项目列表： -->
-  <div id="list-rendering">
-    <ol>
-      <li v-for="todo in todos">
-        {{todo.text}}
-      </li>
-    </ol>
-  </div>
-
-  <script>
-    const ListRendering = {
-      data() {
-        return {
-          todos: [
-            { text: 'Learn JavaScript' },
-            { text: 'Learn Vue' },
-            { text: 'Build something awesome' }
-          ]
-        }
-      }
-    }
-    Vue.createApp(ListRendering).mount('#list-rendering')
-  </script>
-</body>
+    <script>
+      const ListRendering = {
+        data() {
+          return {
+            todos: [
+              { text: "Learn JavaScript" },
+              { text: "Learn Vue" },
+              { text: "Build something awesome" },
+            ],
+          };
+        },
+      };
+      Vue.createApp(ListRendering).mount("#list-rendering");
+    </script>
+  </body>
+</html>
