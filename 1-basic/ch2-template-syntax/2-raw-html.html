@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/vue.global.js"></script>
+    <title>2-raw-html</title>
+  </head>
+
+  <body>
+    <!-- 双大括号会将数据解释为普通文本，而非 HTML 代码。
+    为了输出真正的 HTML，你需要使用v-html 指令： -->
+    <div id="raw-html">
+      <p>Using mustache:{{rawHtml}}</p>
+      <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    </div>
+    <script>
+      const RenderHtmlApp = {
+        data() {
+          return {
+            rawHtml: '<span style="color:red">This should be red.</span>',
+          };
+        },
+      };
+      Vue.createApp(RenderHtmlApp).mount('#raw-html');
+    </script>
+  </body>
+</html>

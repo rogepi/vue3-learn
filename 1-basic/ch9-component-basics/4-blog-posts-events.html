@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/vue.global.js"></script>
+    <title>4-blog-posts-events</title>
+  </head>
+
+  <body>
+    <div id="blog-posts-demo">
+      <div v-bind:style="{ fontSize: postFontSize + 'em' }">
+        <blog-post
+          v-for="post in posts"
+          :key="post.id"
+          :title="post.title"
+          @enlarge-text="onEnlargeText"
+        ></blog-post>
+        <!-- 可以通过 $event 访问到被抛出的这个值： -->
+      </div>
+    </div>
+    <script>
+      const App = {
+        data() {
+          return {
+            posts: [
+              { id: 1, title: 'My journey with Vue' },
+              { id: 2, title: 'Blogging with Vue' },
+              { id: 3, title: 'Why Vue is so fun' },
+            ],
+            postFontSize: 1,
+          };
+        },
+        methods: {
+          // 这个值将会作为第一个参数传入这个方法：
+          onEnlargeText(enlargeAmount) {
+            this.postFontSize += enlargeAmount;
+          },
+        },
+      };
+
+      const app = Vue.createApp(App);
+
+      app.component('blog-post', {
+        props: ['title'],
+        emits: ['enlarge-text'],
+        // 使用事件抛出一个值
+        template: ` <h4>{{title}}</h4>
+                      <button @click="$emit('enlarge-text', 0.1)">
+                        Enlarge text
+                      </button>
+                    `,
+      });
+
+      app.mount('#blog-posts-demo');
+    </script>
+  </body>
+</html>

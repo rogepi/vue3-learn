@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/vue.global.js"></script>
+    <title>2-value-binding</title>
+  </head>
+
+  <body>
+    <div id="value-binding">
+      <!-- 对于单选按钮，复选框及选择框的选项，
+        v-model 绑定的值通常是静态字符串 (对于复选框也可以是布尔值)： -->
+
+      <!-- 当选中时，`picked` 为字符串 "a" -->
+      <input type="radio" v-model="picked" value="a" />
+
+      <!-- `toggle` 为 true 或 false -->
+      <input type="checkbox" v-model="toggle" />
+
+      <!-- 当选中第一个选项时，`selected` 为字符串 "abc" -->
+      <select v-model="selected">
+        <option value="abc">ABC</option>
+      </select>
+
+      <!-- 复选框 (Checkbox) -->
+      <input
+        type="checkbox"
+        v-model="toggle"
+        true-value="yes"
+        false-value="no"
+      />
+      <!-- // when checked:
+          vm.toggle === 'yes'
+          // when unchecked:
+          vm.toggle === 'no' -->
+
+      <!-- 单选框 (Radio) -->
+      <input type="radio" v-model="pick" v-bind:value="a" />
+      <!-- // 当选中时
+          vm.pick === vm.a -->
+
+      <!-- 选择框选项 (Select Options) -->
+      <select v-model="selected">
+        <!-- 内联对象字面量 -->
+        <option :value="{ number: 123 }">123</option>
+      </select>
+      <!-- // 当被选中时
+          typeof vm.selected // => 'object'
+          vm.selected.number // => 123 -->
+    </div>
+    <script>
+      Vue.createApp({}).mount('#value-binding');
+    </script>
+  </body>
+</html>

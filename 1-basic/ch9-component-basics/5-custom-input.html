@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="/vue.global.js"></script>
+    <title>5-custom-input</title>
+  </head>
+
+  <body>
+    <div id="custom-input-demo">
+      <custon-input v-model="searchText"></custon-input>
+      <p>{{searchText}}</p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            searchText: 'Hello Wolrd',
+          };
+        },
+      });
+
+      app.component('custon-input', {
+        props: ['modelValue'],
+        emits: ['update:modelValue'],
+        template: `
+          <input
+            :value="modelValue"
+            @input="$emit('update:modelValue',$event.target.value)"
+          >
+          `,
+      });
+
+      app.mount('#custom-input-demo');
+    </script>
+  </body>
+</html>
