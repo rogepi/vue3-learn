@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/vue.global.js"></script>
+    <title>6-component-async.html</title>
+  </head>
+
+  <body>
+    <div id=""></div>
+    <script>
+      // 异步组件
+      const app = Vue.createApp({});
+
+      const AsyncComp = Vue.defineAsyncComponent(
+        () =>
+          new Promise((resolve, reject) => {
+            resolve({
+              template: '<div>I am async!</div>',
+            });
+          })
+      );
+
+      app.component('async-example', AsyncComp);
+    </script>
+  </body>
+</html>

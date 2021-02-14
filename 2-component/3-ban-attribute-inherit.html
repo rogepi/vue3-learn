@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/vue.global.js"></script>
+    <title>3-ban-attribute-inherit</title>
+  </head>
+
+  <body>
+    <div id="ban-attribute-inherit">
+      <!-- Date-picker 组件 使用非 prop attribute -->
+      <date-picker data-status="activated"></date-picker>
+    </div>
+    <script>
+      const app = Vue.createApp({});
+
+      app.component('date-picker', {
+        // 如果需要将所有非 prop attribute 应用于 input 元素
+        // 而不是根 div 元素，则可以使用 v-bind 缩写来完成。
+        inheritAttrs: false,
+        template: `
+          <div class="date-picker">
+            <input type="datetime" v-bind="$attrs">
+          </div>`,
+      });
+    </script>
+  </body>
+</html>
