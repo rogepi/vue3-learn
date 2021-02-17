@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/vue.global.js"></script>
+    <title>3-dynamic-arguments</title>
+  </head>
+
+  <body>
+    <div id="dynamic-example" class="demo">
+      <h2>Scroll down the page</h2>
+      <input type="range" min="0" max="500" v-model="pinPadding" />
+      <p v-pin:[direction]="pinPadding">
+        Stick me {{ pinPadding + 'px' }} from the {{ direction }} of the page
+      </p>
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            direction: 'right',
+            pinPadding: 200,
+          };
+        },
+      });
+      app.directive('pin', {
+        mounted(el, binding) {
+          el.style.position = 'fixed';
+          const s = binding.arg || 'top';
+          el.style[s] = binding.value + 'px';
+        },
+        updated(el, binding) {
+          const s = binding.arg || 'top';
+          el.style[s] = binding.value + 'px';
+        },
+      });
+
+      // 函数简写
+      // app.directive('pin', (el, binding) => {
+      //   el.style.position = 'fixed';
+      //   const s = binding.arg || 'top';
+      //   el.style[s] = binding.value + 'px';
+      // });
+
+      app.mount('#dynamic-example');
+    </script>
+  </body>
+</html>

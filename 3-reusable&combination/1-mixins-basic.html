@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="author" content="rogepi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/vue.global.js"></script>
+    <title>1-mixins-basic</title>
+  </head>
+
+  <body>
+    <div id="mixins-basic">
+      <p>1</p>
+    </div>
+    <script>
+      // define a mixin object
+      const myMixin = {
+        created() {
+          console.log('mixin 对象的钩子被调用');
+          this.hello();
+        },
+        data() {
+          return {
+            message: 'hello',
+            foo: 'abc',
+          };
+        },
+        methods: {
+          hello() {
+            console.log('hello from mixin!');
+          },
+        },
+      };
+
+      // define an app that uses this mixin
+      const app = Vue.createApp({
+        mixins: [myMixin],
+        // 同名钩子函数将合并为一个数组，因此都将被调用。
+        // 另外，mixin 对象的钩子将在组件自身钩子之前调用。
+        created() {
+          console.log('组件钩子被调用');
+        },
+        // 数据对象在内部会进行递归合并，并在发生冲突时以组件数据优先。
+        data() {
+          return {
+            message: 'goodbye',
+            bar: 'def',
+          };
+        },
+      });
+
+      //全局mixin
+      // 为自定义的选项 'myOption' 注入一个处理器。
+      app.mixin({
+        created() {
+          const myOption = this.$options.myOption;
+          if (myOption) {
+            console.log(myOption);
+          }
+        },
+      });
+
+      app.mount('#mixins-basic'); // => "hello from mixin!"
+    </script>
+  </body>
+</html>
