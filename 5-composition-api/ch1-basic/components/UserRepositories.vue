@@ -2,8 +2,8 @@
 
 <script>
 // src/components/UserRepositories.vue
-import useUserRepositories from './composables/useUserRepositories'
-import useRepositoryNameSearch from './composables/useRepositoryNameSearch'
+import useUserRepositories from '../composables/useUserRepositories'
+import useRepositoryNameSearch from '../composables/useRepositoryNameSearch'
 import { toRefs } from 'vue'
 
 export default {
